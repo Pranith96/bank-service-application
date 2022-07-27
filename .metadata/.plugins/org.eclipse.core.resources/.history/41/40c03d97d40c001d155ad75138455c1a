@@ -1,0 +1,42 @@
+package com.bank.application.entity;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+@Entity
+@Table(name = "customer_info")
+public class Customer {
+
+	@Id
+	@SequenceGenerator(name = "seq", initialValue = 10000)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+	private Integer cifNumber;
+	private String fullName;
+	private String mobileNumber;
+	private String email;
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+	private String userName;
+	private String password;
+
+	@CreationTimestamp
+	@Column(name = "registered_at")
+	private LocalDateTime registeredAt;
+
+	@UpdateTimestamp
+	@Column(name = "updated_at")
+	private LocalDateTime updatedAt;
+
+}

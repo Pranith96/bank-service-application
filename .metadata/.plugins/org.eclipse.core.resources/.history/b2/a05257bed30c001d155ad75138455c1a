@@ -1,0 +1,14 @@
+package com.bank.application.entity;
+
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+public class Customer {
+
+	private Integer cifNumber;
+	private String fullName;
+	private String mobileNumber;
+	private String email;
+	@Enumerated(EnumType.STRING)
+	private Gender gender;
+}

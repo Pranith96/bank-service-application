@@ -1,0 +1,9 @@
+package com.bank.application.entity;
+
+public class Customer {
+
+	private Integer cifNumber;
+	private String fullName;
+	private String mobileNumber;
+	private String email;
+}

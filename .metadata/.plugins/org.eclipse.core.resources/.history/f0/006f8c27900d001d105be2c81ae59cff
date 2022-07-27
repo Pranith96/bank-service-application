@@ -1,0 +1,16 @@
+package com.bank.application.service;
+
+import org.springframework.stereotype.Service;
+
+import com.bank.application.entity.Customer;
+
+@Service
+public class CustomerServiceImpl implements CustomerService {
+
+	@Override
+	public String saveCustomerDetails(Customer customer) {
+
+		return null;
+	}
+
+}
