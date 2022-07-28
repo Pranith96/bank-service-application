@@ -1,0 +1,10 @@
+package com.bank.application.dto;
+
+import com.bank.application.entity.Accounts;
+import com.bank.application.entity.Customer;
+
+public class CustomerDetailsResponseDto {
+	private Customer customer;
+	private Accounts account;
+
+}

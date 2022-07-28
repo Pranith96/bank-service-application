@@ -1,0 +1,12 @@
+package com.bank.application.dto;
+
+import com.bank.application.entity.Gender;
+
+public class CustomerDetailsResponseDto {
+	private Integer cifNumber;
+	private String fullName;
+	private String mobileNumber;
+	private String email;
+	private Gender gender;
+
+}

@@ -25,7 +25,7 @@ public class Accounts {
 	@Column(name = "account_balance")
 	private float balanceAmount;
 	@Column(name = "cif_number")
-	private String cifNumber;
+	private Integer cifNumber;
 	@Column(name = "account_Status")
 	private String accountStatus;
 	@Enumerated(EnumType.STRING)
@@ -56,11 +56,11 @@ public class Accounts {
 		this.balanceAmount = balanceAmount;
 	}
 
-	public String getCifNumber() {
+	public Integer getCifNumber() {
 		return cifNumber;
 	}
 
-	public void setCifNumber(String cifNumber) {
+	public void setCifNumber(Integer cifNumber) {
 		this.cifNumber = cifNumber;
 	}
 

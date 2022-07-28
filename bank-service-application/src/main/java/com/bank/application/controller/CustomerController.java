@@ -3,11 +3,14 @@ package com.bank.application.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.application.dto.CustomerDetailsResponseDto;
 import com.bank.application.dto.CustomerResponse;
 import com.bank.application.entity.Customer;
 import com.bank.application.service.CustomerService;
@@ -35,4 +38,10 @@ public class CustomerController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(customerResponse);
 	}
 
+	
+	@GetMapping("/get/details/{cifNumber}")
+	public ResponseEntity<CustomerDetailsResponseDto> getCustomerDetails(@PathVariable("cifNumber") Integer cifNumber){
+		CustomerDetailsResponseDto response = customerService.getCustomerDetails(cifNumber);
+		return ResponseEntity.status(HttpStatus.OK).body(response);
+	}
 }

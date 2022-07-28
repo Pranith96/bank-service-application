@@ -1,0 +1,13 @@
+package com.bank.application.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bank.application.repository.AccountRepository;
+
+@Service
+public class AccountServiceImpl implements AccountService {
+
+	@Autowired
+	AccountRepository accountRepository;
+}

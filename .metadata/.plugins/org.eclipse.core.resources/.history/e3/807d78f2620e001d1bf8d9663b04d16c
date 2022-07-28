@@ -1,0 +1,20 @@
+package com.bank.application.dto;
+
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
+import com.bank.application.entity.Gender;
+import com.sun.istack.NotNull;
+
+public class CustomerDetailsResponseDto {
+	private Integer cifNumber;
+
+	private String fullName;
+
+	private String mobileNumber;
+	private String email;
+
+	private Gender gender;
+
+}
