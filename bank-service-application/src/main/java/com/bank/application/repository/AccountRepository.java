@@ -3,6 +3,8 @@ package com.bank.application.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.bank.application.entity.Accounts;
@@ -11,5 +13,9 @@ import com.bank.application.entity.Accounts;
 public interface AccountRepository extends JpaRepository<Accounts , Integer>{
 
 	List<Accounts> findByCifNumber(Integer cifNumber);
+
+	@Modifying
+	@Query("update Accounts a set a.balanceAmount=:finalAmountAfterDeducted where a.accountNumber=:accountNumber")
+	void updateAmount(float finalAmountAfterDeducted, int accountNumber);
 
 }

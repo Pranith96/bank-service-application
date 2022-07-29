@@ -1,0 +1,36 @@
+package com.bank.application.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bank.application.dto.TransactionsDetailsDto;
+import com.bank.application.entity.Accounts;
+import com.bank.application.repository.AccountRepository;
+import com.bank.application.repository.TransactionsRepository;
+
+@Service
+public class TransactionsServiceImpl implements TransactionsService {
+
+	@Autowired
+	TransactionsRepository transactionsRepository;
+	
+	@Autowired
+	AccountRepository accountRepository;
+
+	@Override
+	public String transferAmount(TransactionsDetailsDto transactionsDetailsDto) {
+		int fromAccount = transactionsDetailsDto.getFromAccountNumber();
+		int toAccount = transactionsDetailsDto.getToAccountNumber();
+		
+		Optional<Accounts> fromAccountResponse = accountRepository.findById(fromAccount);
+		boolean fromAccountResult = validateFromAccountResponse(fromAccountResponse, transactionsDetailsDto.getAmount());
+		return null;
+	}
+
+	private boolean validateFromAccountResponse(Optional<Accounts> fromAccountResponse, float amount) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+}

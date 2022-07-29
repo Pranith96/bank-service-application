@@ -1,0 +1,20 @@
+package com.bank.application.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bank.application.dto.TransactionsDetailsDto;
+import com.bank.application.repository.TransactionsRepository;
+
+@Service
+public class TransactionsServiceImpl implements TransactionsService {
+
+	@Autowired
+	TransactionsRepository transactionsRepository;
+
+	@Override
+	public String transferAmount(TransactionsDetailsDto transactionsDetailsDto) {
+
+		return null;
+	}
+}

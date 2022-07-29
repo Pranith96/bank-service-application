@@ -1,0 +1,8 @@
+package com.bank.application.dto;
+
+public class TransactionsDetailsDto {
+
+	private Integer toAccountNumber;
+	private Integer fromAccountNumber;
+	private float amount;
+}

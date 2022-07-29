@@ -1,0 +1,70 @@
+package com.bank.application.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.bank.application.dto.TransactionsDetailsDto;
+import com.bank.application.entity.Accounts;
+import com.bank.application.repository.AccountRepository;
+import com.bank.application.repository.TransactionsRepository;
+
+@Service
+public class TransactionsServiceImpl implements TransactionsService {
+
+	@Autowired
+	TransactionsRepository transactionsRepository;
+
+	@Autowired
+	AccountRepository accountRepository;
+
+	@Override
+	public String transferAmount(TransactionsDetailsDto transactionsDetailsDto) {
+		int fromAccount = transactionsDetailsDto.getFromAccountNumber();
+		int toAccount = transactionsDetailsDto.getToAccountNumber();
+
+		Optional<Accounts> fromAccountResponse = accountRepository.findById(fromAccount);
+		boolean fromAccountResult = validateFromAccountResponse(fromAccountResponse,
+				transactionsDetailsDto.getAmount());
+		if (!fromAccountResult) {
+			throw new RuntimeException("Insufficient Balance to Transfer");
+		}
+		Optional<Accounts> toAccountResponse = accountRepository.findById(toAccount);
+		validationForToAccount(toAccountResponse);
+
+		float finalAmountAfterDeducted = fromAccountResponse.get().getBalanceAmount()
+				- transactionsDetailsDto.getAmount();
+
+		accountRepository.updateAmount(finalAmountAfterDeducted, fromAccount);
+		float finalAmountAfterAdded = toAccountResponse.get().getBalanceAmount() + transactionsDetailsDto.getAmount();
+		accountRepository.updateAmount(finalAmountAfterAdded, toAccount);
+
+		return null;
+	}
+
+	private void validationForToAccount(Optional<Accounts> toAccountResponse) {
+		if (!toAccountResponse.isPresent()) {
+			throw new RuntimeException("To account doesnot exists");
+		}
+
+		if (toAccountResponse.get().getAccountStatus().equals("INACTIVE")) {
+			throw new RuntimeException("To account is Inactive. Cant transfer amount");
+		}
+
+	}
+
+	private boolean validateFromAccountResponse(Optional<Accounts> fromAccountResponse, float amount) {
+		if (!fromAccountResponse.isPresent()) {
+			throw new RuntimeException("From account doesnot exists");
+		}
+
+		if (amount <= 0) {
+			throw new RuntimeException("Please enter amount greater than 0 for transaction");
+
+		}
+
+		boolean result = (fromAccountResponse.get().getBalanceAmount() > amount) ? Boolean.TRUE : Boolean.FALSE;
+		return result;
+	}
+}
