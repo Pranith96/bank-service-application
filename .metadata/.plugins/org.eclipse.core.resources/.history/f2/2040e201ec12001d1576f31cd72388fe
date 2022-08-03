@@ -1,0 +1,11 @@
+package com.bank.application.service;
+
+import com.bank.application.dto.TransactionsDetailsDto;
+
+public interface TransactionsService {
+
+	String transferAmount(TransactionsDetailsDto transactionsDetailsDto);
+
+	String depositAmount(float amount, Integer accountNumber);
+
+}

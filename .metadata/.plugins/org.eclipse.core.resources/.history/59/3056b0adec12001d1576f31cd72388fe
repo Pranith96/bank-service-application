@@ -1,0 +1,5 @@
+package com.bank.application.exceptions;
+
+public class BusinessException extends RuntimeException {
+
+}

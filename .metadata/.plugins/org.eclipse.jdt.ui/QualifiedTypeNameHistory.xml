@@ -18,8 +18,14 @@
     <fullyQualifiedTypeName name="javax.persistence.Entity"/>
     <fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
     <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
-    <fullyQualifiedTypeName name="com.bank.application.repository.AccountRepository"/>
     <fullyQualifiedTypeName name="com.bank.application.service.AccountService"/>
+    <fullyQualifiedTypeName name="com.bank.application.service.TransactionsService"/>
+    <fullyQualifiedTypeName name="com.bank.application.repository.TransactionsRepository"/>
+    <fullyQualifiedTypeName name="com.bank.application.dto.TransactionsDetailsDto"/>
+    <fullyQualifiedTypeName name="com.bank.application.repository.AccountRepository"/>
     <fullyQualifiedTypeName name="java.util.Optional"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
+    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
+    <fullyQualifiedTypeName name="com.bank.application.entity.TransactionType"/>
     <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

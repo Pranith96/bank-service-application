@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bank.application.dto.CustomerDetailsResponseDto;
 import com.bank.application.entity.Accounts;
 import com.bank.application.entity.Customer;
+import com.bank.application.exceptions.BusinessException;
 import com.bank.application.repository.AccountRepository;
 import com.bank.application.repository.CustomerRepository;
 
@@ -34,7 +35,7 @@ public class CustomerServiceImpl implements CustomerService {
 	public CustomerDetailsResponseDto getCustomerDetails(Integer cifNumber) {
 		Optional<Customer> customerResponse = customerRepository.findById(cifNumber);
 		if (!customerResponse.isPresent()) {
-			throw new RuntimeException("cif number Invalid");
+			throw new BusinessException("cif number Invalid");
 		}
 		List<Accounts> accountResponse = accountRepository.findByCifNumber(cifNumber);
 		CustomerDetailsResponseDto customerDetailsResponseDto = new CustomerDetailsResponseDto();

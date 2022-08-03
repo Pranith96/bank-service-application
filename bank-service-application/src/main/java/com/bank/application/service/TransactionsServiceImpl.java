@@ -104,4 +104,29 @@ public class TransactionsServiceImpl implements TransactionsService {
 		boolean result = (fromAccountResponse.get().getBalanceAmount() > amount) ? Boolean.TRUE : Boolean.FALSE;
 		return result;
 	}
+
+	@Override
+	public String depositAmount(float amount, Integer accountNumber) {
+		Optional<Accounts> response = accountRepository.findById(accountNumber);
+		if (!response.isPresent()) {
+			throw new RuntimeException("To account doesnot exists");
+		}
+		float updatedAmount = response.get().getBalanceAmount() + amount;
+		response.get().setBalanceAmount(updatedAmount);
+		accountRepository.save(response.get());
+		Transactions transaction = new Transactions();
+		transaction.setAccountNumber(accountNumber);
+		transaction.setAmount(amount);
+		transaction.setDescription("Amount has been deposited");
+		transaction.setTotalAmount(updatedAmount);
+		transaction.setTransactionType(TransactionType.CREDITED);
+		transactionsRepository.save(transaction);
+		return "Amount has been deposited";
+	}
+
+	@Override
+	public List<Transactions> getAccountTransactionDetails(Integer accountNumber) {
+		List<Transactions> transactions = transactionsRepository.findByAccountNumber(accountNumber);
+		return transactions;
+	}
 }
