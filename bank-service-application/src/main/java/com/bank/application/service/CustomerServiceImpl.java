@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.bank.application.dto.CustomerDetailsResponseDto;
@@ -14,6 +15,7 @@ import com.bank.application.repository.AccountRepository;
 import com.bank.application.repository.CustomerRepository;
 
 @Service
+@Profile(value = {"dev","local","qa","prod"})
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.bank.application.dto.TransactionsDetailsDto;
@@ -18,6 +19,7 @@ import com.bank.application.repository.TransactionsRepository;
 
 @Transactional
 @Service
+@Profile(value = {"dev","local","qa","prod"})
 public class TransactionsServiceImpl implements TransactionsService {
 
 	@Autowired

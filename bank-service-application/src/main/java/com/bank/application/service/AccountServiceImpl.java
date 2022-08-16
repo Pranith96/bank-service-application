@@ -1,13 +1,17 @@
 package com.bank.application.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import com.bank.application.dto.AccountCreationDto;
 import com.bank.application.entity.Accounts;
 import com.bank.application.repository.AccountRepository;
 
-@Service
+@Primary
+@Service(value = "service1")
+@Profile(value = {"dev","local","qa","prod"})
 public class AccountServiceImpl implements AccountService {
 
 	@Autowired
